@@ -14,19 +14,22 @@ gcc -g removePIE.o xnu-definitions.o -o removePIE
 
 ## Usage
 
-Copy the compiled executable to your Linux/macOS PC and use this tool:
+Copy the compiled executable to your Linux/macOS machine and pass the path to the executable as the first argument:
 
 ```bash
-$ ./removePIE <application binary>
+$ ./removePIE ExampleBinary
+loading header...
+looks ok
+mach-o header: cffaedfe0c00000100000000020000004c000000d822000085808100
 
 backing up application binary...
-binary backed up to ExampleBinary.bak
-mach_header: cffaedfe0c00000100000000020000004c000000d822000085808100
-original flags: 8580a100
-disabling ASLR/PIE ...
-new flags:
-85808100
-ASLR has been disabled for ExampleBinary
+done
+
+original flags: 85808100
+disabling ASLR...
+new flags:      85808100
+
+ASLR has been disabled for ExampleBinary!
 ```
 
 ## Optional: Entitlements
