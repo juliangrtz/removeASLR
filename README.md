@@ -25,7 +25,7 @@ mach-o header: cffaedfe0c00000100000000020000004c000000d822000085808100
 backing up application binary...
 done
 
-original flags: 85808100
+original flags: 8580a100
 disabling ASLR...
 new flags:      85808100
 
