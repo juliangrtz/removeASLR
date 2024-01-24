@@ -2,8 +2,8 @@
 # In order to execute this Makefile just type "make"
 #
 
-OBJS	= removePIE.o xnu-definitions.o
-SOURCE	= removePIE.c xnu-definitions.c
+OBJS	= removePIE.o
+SOURCE	= removePIE.c
 HEADER	= xnu-definitions.h
 OUT	= removePIE
 CC	 = gcc
@@ -19,10 +19,6 @@ all: $(OBJS)
 # create/compile the individual files >>separately<<
 removePIE.o: removePIE.c
 	$(CC) $(FLAGS) removePIE.c
-
-xnu-definitions.o: xnu-definitions.c
-	$(CC) $(FLAGS) xnu-definitions.c
-
 
 # clean house
 clean:

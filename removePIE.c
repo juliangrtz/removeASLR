@@ -4,6 +4,9 @@
 #include <string.h>
 #include "xnu-definitions.h"
 
+size_t strlcpy(char *dst, const char *src, size_t n);
+size_t strlcat(char *dst, const char *src, size_t n);
+
 void hexify(unsigned char *data, uint32_t size)
 {
 	while (size--)
@@ -20,8 +23,45 @@ void fcopy(FILE *f1, FILE *f2)
 	while ((n = fread(buffer, sizeof(char), sizeof(buffer), f1)) > 0)
 	{
 		if (fwrite(buffer, sizeof(char), n, f2) != n)
-			puts("Error copying backup");
+			puts("error copying backup");
 	}
+}
+
+size_t strlcpy(char *dst, const char *src, size_t n)
+{
+	char *p = dst;
+
+	if (n != 0)
+	{
+		for (; --n != 0; p++, src++)
+		{
+			if ((*p = *src) == '\0')
+				return p - dst;
+		}
+		*p = '\0';
+	}
+	return (p - dst) + strlen(src);
+}
+
+size_t strlcat(char *dst, const char *src, size_t n)
+{
+	char *p = dst;
+
+	while (n != 0 && *p != '\0')
+	{
+		p++;
+		n--;
+	}
+	if (n != 0)
+	{
+		for (; --n != 0; p++, src++)
+		{
+			if ((*p = *src) == '\0')
+				return p - dst;
+		}
+		*p = '\0';
+	}
+	return (p - dst) + strlen(src);
 }
 
 int main(int argc, char *argv[])
@@ -37,7 +77,7 @@ int main(int argc, char *argv[])
 		puts("please enter the filename binary: in the format ./removePIE filename");
 		return EXIT_FAILURE;
 	}
-	
+
 	if ((fp = fopen(argv[1], "rb+")) == NULL)
 	{
 		puts("error, unable to open file");
@@ -80,7 +120,7 @@ int main(int argc, char *argv[])
 		hexify((unsigned char *)&currentHeader, sizeof(currentHeader));
 		printf("\noriginal flags:\t");
 		hexify((unsigned char *)&currentHeader.flags, sizeof(currentHeader.flags));
-		printf("\ndisabling ASLR/PIE ...\n");
+		printf("\ndisabling ASLR...\n");
 		currentHeader.flags &= ~MH_PIE;
 		puts("new flags:\t");
 		hexify((unsigned char *)&currentHeader.flags, sizeof(currentHeader.flags));
@@ -88,7 +128,7 @@ int main(int argc, char *argv[])
 		fseek(fp, 0, SEEK_SET);
 		if ((fwrite(&currentHeader, sizeof(char), 28, fp)) == 0)
 		{
-			printf("Error writing to application file %s\n", fwName);
+			printf("error writing to application file %s\n", fwName);
 		}
 		printf("\nASLR has been disabled for %s\n", argv[1]);
 		// exit and close memory
@@ -97,14 +137,15 @@ int main(int argc, char *argv[])
 	}
 	else if (currentHeader.magic == MH_CIGAM || currentHeader.magic == MH_CIGAM_64) // big endian
 	{
-		puts("File is big-endian, not an iOS binary!");
+		puts("file is big endian, not an iOS binary!");
 		return EXIT_FAILURE;
 	}
 	else
 	{
-		puts("File is not a Mach-O binary!");
+		puts("file is not a Mach-O binary!");
 		return EXIT_FAILURE;
 	}
 
 	return EXIT_FAILURE;
 }
+

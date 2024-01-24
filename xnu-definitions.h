@@ -10,8 +10,8 @@ https://opensource.apple.com/source/xnu/
 #define MH_MAGIC 0xFEEDFACE /* the mach magic number (little endian) */
 #define MH_CIGAM 0xCEFAEDFE /* the mach magic number (big endian) --> NXSwapInt(MH_MAGIC), look at byte_order.h */
 
-#define MH_MAGIC_64 0xfeedfacf /* the 64-bit mach magic number (little endian) */
-#define MH_CIGAM_64 0xcffaedfe /* the 64-bit mach magic number (big endian) --> NXSwapInt(MH_MAGIC), look at byte_order.h */
+#define MH_MAGIC_64 0xFEEDFACF /* the 64-bit mach magic number (little endian) */
+#define MH_CIGAM_64 0xCFFAEDFE /* the 64-bit mach magic number (big endian) --> NXSwapInt(MH_MAGIC), look at byte_order.h */
 
 typedef int32_t integer_t;
 typedef integer_t cpu_type_t;
@@ -27,6 +27,3 @@ struct mach_header
 	uint32_t sizeofcmds;	  /* the size of all the load commands */
 	uint32_t flags;			  /* flags */
 };
-
-size_t strlcpy(char *dst, const char *src, size_t n);
-size_t strlcat(char *dst, const char *src, size_t n);
