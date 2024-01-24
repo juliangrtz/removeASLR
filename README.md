@@ -22,7 +22,7 @@ $ ./removePIE <application binary>
 backing up application binary...
 binary backed up to ExampleBinary.bak
 mach_header: cffaedfe0c00000100000000020000004c000000d822000085808100
-original flags: 85808100
+original flags: 8580a100
 disabling ASLR/PIE ...
 new flags:
 85808100
