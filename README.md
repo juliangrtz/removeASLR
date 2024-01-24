@@ -16,7 +16,7 @@ gcc -g removePIE.o xnu-definitions.o -o removePIE
 
 Copy the compiled executable to your Linux/macOS machine and pass the path to the executable as the first argument:
 
-```bash
+```
 $ ./removePIE ExampleBinary
 loading header...
 looks ok
