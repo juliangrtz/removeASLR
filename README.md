@@ -14,7 +14,7 @@ gcc -g removePIE.o xnu-definitions.o -o removePIE
 
 ## Usage
 
-Copy the compiled executable to your Linux/macOS machine and pass the path to the executable as the first argument:
+Copy the compiled iOS executable to your Linux/macOS machine and pass the path to the executable as the first argument:
 
 ```
 $ ./removePIE ExampleBinary
