@@ -4,9 +4,6 @@
 #include <string.h>
 #include "xnu-definitions.h"
 
-size_t strlcpy(char *dst, const char *src, size_t n);
-size_t strlcat(char *dst, const char *src, size_t n);
-
 void hexify(unsigned char *data, uint32_t size)
 {
 	while (size--)
