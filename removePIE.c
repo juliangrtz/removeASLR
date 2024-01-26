@@ -9,9 +9,9 @@ void hexlify(unsigned char *data, uint32_t size) {
 }
 
 int main(int argc, char *argv[]) {
-    struct mach_header currentHeader;
     FILE *editedFilePtr;
-
+    struct mach_header currentHeader;
+    
     // error cases
     if (argc < 1) {
         puts("please enter the filename binary in the format ./removePIE filename");
@@ -22,6 +22,8 @@ int main(int argc, char *argv[]) {
         printf("error, unable to open file %s\n", argv[1]);
         return EXIT_FAILURE;
     }
+
+
 
     if ((fread(&currentHeader.magic, sizeof(int32_t), 1, editedFilePtr)) == 0) {
         puts("error reading magic constant in file");
