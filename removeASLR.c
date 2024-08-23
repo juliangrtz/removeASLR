@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     
     // error cases
     if (argc < 1) {
-        puts("please enter the filename binary in the format ./removePIE filename");
+        puts("please enter the filename binary in the format ./removeASLR filename");
         return EXIT_FAILURE;
     }
 
