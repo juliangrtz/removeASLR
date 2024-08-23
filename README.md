@@ -1,15 +1,15 @@
-# removePIE
+# removeASLR
 
 This is a tool which flips the MH_PIE bit in an iOS application, meaning Address Space Layout Randomization (ASLR) is being disabled. Reverse-engineering without ASLR is much easier.
 
 ## Building
 
 ```bash
-$ git clone https://github.com/juliangrtz/removePIE && cd removePIE
+$ git clone https://github.com/juliangrtz/removeASLR && cd removeASLR
 # maybe adjust the Makefile
 $ make
-gcc -g -c -Wall removePIE.c
-gcc -g removePIE.o xnu-definitions.o -o removePIE 
+gcc -g -c -Wall removeASLR.c
+gcc -g removeASLR.o xnu-definitions.o -o removeASLR 
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ gcc -g removePIE.o xnu-definitions.o -o removePIE
 Copy the compiled iOS executable to your Linux/macOS machine and pass the path to the executable as the first argument:
 
 ```
-$ ./removePIE ExampleBinary
+$ ./removeASLR ExampleBinary
 loading header...
 looks ok
 mach-o header: cffaedfe0c00000100000000020000004c000000d822000085808100
