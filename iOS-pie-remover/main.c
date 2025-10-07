@@ -1,6 +1,13 @@
+//
+//  main.c
+//  iOS-pie-remover
+//
+//  Created by juliangrtz on 07.10.25.
+//
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "xnu-definitions.h"
+#include <mach-o/loader.h>
 
 void hexlify(unsigned char *data, uint32_t size) {
     while (size--) {
@@ -14,7 +21,7 @@ int main(int argc, char *argv[]) {
     
     // error cases
     if (argc < 1) {
-        puts("please enter the filename binary in the format ./removeASLR filename");
+        puts("please enter the filename binary in the format ./removePIE filename");
         return EXIT_FAILURE;
     }
 
