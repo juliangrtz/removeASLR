@@ -1,6 +1,6 @@
 # iOS-pie-remover
 
-This is a tool which flips the MH_PIE bit in an iOS application, meaning Address Space Layout Randomization (ASLR) is being disabled (not in the kernel of course). Both 32- and 64-bit executables are supported.
+This tool flips the `MH_PIE` bit in an iOS application, meaning PIE address randomization (Position-Independent Executable) is being disabled; but not in the kernel, of course. Both 32- and 64-bit executables are supported.
 
 ## Usage
 
